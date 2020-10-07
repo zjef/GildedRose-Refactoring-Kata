@@ -4,6 +4,12 @@ class GildedRose {
     Item[] items;
 
     public GildedRose(Item[] items) {
+
+        for (Item item : items) {
+            if ("Sulfuras, Hand of Ragnaros".equals(item.name) && item.quality != 80) {
+                throw new IllegalArgumentException("Sulfuras, Hand of Ragnaros its quality should be 80 and not: " + item.quality);
+            }
+        }
         this.items = items;
     }
 

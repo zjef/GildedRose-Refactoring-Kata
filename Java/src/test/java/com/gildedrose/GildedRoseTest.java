@@ -4,6 +4,7 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class GildedRoseTest {
 
@@ -75,6 +76,13 @@ class GildedRoseTest {
         app.updateQuality();
 
         assertEquals(50, app.items[0].quality);
+    }
+
+    @Test
+    public void sulfurasHasAQualityOfEighty() {
+        Item[] items = createSulfurasSingleton(10, 10);
+
+        assertThrows(IllegalArgumentException.class, () -> new GildedRose(items));
     }
 
     @Test
