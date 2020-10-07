@@ -2,11 +2,10 @@ package com.gildedrose;
 
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.*;
 
-class GildedRoseTest {
+class LegendaryItemUpdaterTest {
 
-    public static final String STANDARD_ITEM = "Standard Item";
     public static final String SULFURAS = "Sulfuras, Hand of Ragnaros";
 
     @Test
@@ -17,14 +16,13 @@ class GildedRoseTest {
     }
 
     @Test
-    public void qualityCanNotBeNegative() {
-        Item[] items = createStandardItemSingleton(10, -5);
+    public void sulfurasDoesNoDecreaseInQuality() {
+        Item[] items = createSulfurasSingleton(10, 80);
+        GildedRose app = new GildedRose(items);
 
-        assertThrows(IllegalArgumentException.class, () -> new GildedRose(items));
-    }
+        app.updateQuality();
 
-    private Item[] createStandardItemSingleton(Integer sellIn, Integer quality) {
-        return new Item[]{new Item(STANDARD_ITEM, sellIn, quality)};
+        assertEquals(80, app.items[0].quality);
     }
 
     private Item[] createSulfurasSingleton(Integer sellIn, Integer quality) {

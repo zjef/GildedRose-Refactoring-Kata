@@ -1,13 +1,9 @@
 package com.gildedrose;
 
-public class BackstagePasses extends IdentifiedItem{
-
-    BackstagePasses(Item item) {
-        super(item);
-    }
+public class BackstagePassesUpdater implements ItemUpdater {
 
     @Override
-    public void updateItem() {
+    public void updateItem(Item item) {
         if (!isExpired(item)) {
             if (canIncreaseQuality(item)) {
                 item.quality++;

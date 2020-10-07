@@ -13,8 +13,8 @@ class GildedRose {
 
     public void updateQuality() {
         for (Item item : items) {
-            IdentifiedItem identifiedItem = IdentifiedItemFactory.identify(item);
-            identifiedItem.updateItem();
+            ItemUpdater itemUpdater = ItemUpdaterFactory.getUpdater(item);
+            itemUpdater.updateItem(item);
         }
     }
 

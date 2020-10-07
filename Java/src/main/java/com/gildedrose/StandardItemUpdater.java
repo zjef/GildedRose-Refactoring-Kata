@@ -1,13 +1,9 @@
 package com.gildedrose;
 
-public class BasicItem extends IdentifiedItem {
-
-    BasicItem(Item item) {
-        super(item);
-    }
+public class StandardItemUpdater implements ItemUpdater {
 
     @Override
-    public void updateItem() {
+    public void updateItem(Item item) {
         if (canLowerQuality(item)) {
             item.quality--;
             if (isExpired(item) && canLowerQuality(item)) {
