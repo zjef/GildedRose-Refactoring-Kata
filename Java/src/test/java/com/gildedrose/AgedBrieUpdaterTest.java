@@ -37,8 +37,12 @@ class AgedBrieUpdaterTest {
 
     @Test
     public void qualityDoesNotIncreaseAboveFifty() {
-        Item[] items = createAgedBrieSingleton(10, 50);
+        Item[] items = createAgedBrieSingleton(10, 49);
         GildedRose app = new GildedRose(items);
+
+        app.updateQuality();
+
+        assertEquals(50, app.items[0].quality);
 
         app.updateQuality();
 

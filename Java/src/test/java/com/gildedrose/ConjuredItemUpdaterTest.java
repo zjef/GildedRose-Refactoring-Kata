@@ -4,9 +4,9 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class StandardItemUpdaterTest {
+class ConjuredItemUpdaterTest {
 
-    public static final String STANDARD_ITEM = "Standard Item";
+    public static final String CONJURED_ITEM = "Conjured Mana Cake";
 
     @Test
     public void updateReducesSellInByOne() {
@@ -19,36 +19,36 @@ class StandardItemUpdaterTest {
     }
 
     @Test
-    public void updateReducesQualityByOne() {
+    public void updateReducesQualityByTwo() {
         Item[] items = createStandardItemSingleton(10, 10);
         GildedRose app = new GildedRose(items);
 
         app.updateQuality();
 
-        assertEquals(9, app.items[0].quality);
-    }
-
-    @Test
-    public void whenItemIsExpiredQualityIsReducedByTwo() {
-        Item[] items = createStandardItemSingleton(-5, 10);
-        GildedRose app = new GildedRose(items);
-
-        app.updateQuality();
-
         assertEquals(8, app.items[0].quality);
     }
 
     @Test
-    public void qualityIsReducedByTwoIfSellInIsZero() {
-        Item[] items = createStandardItemSingleton(0, 10);
+    public void whenItemIsExpiredQualityIsReducedByFour() {
+        Item[] items = createStandardItemSingleton(-10, 10);
         GildedRose app = new GildedRose(items);
 
         app.updateQuality();
 
-        assertEquals(8, app.items[0].quality);
+        assertEquals(6, app.items[0].quality);
+    }
+
+    @Test
+    public void updateReducesQualityToAMinimumOZero() {
+        Item[] items = createStandardItemSingleton(10, 1);
+        GildedRose app = new GildedRose(items);
+
+        app.updateQuality();
+
+        assertEquals(0, app.items[0].quality);
     }
 
     private Item[] createStandardItemSingleton(Integer sellIn, Integer quality) {
-        return new Item[]{new Item(STANDARD_ITEM, sellIn, quality)};
+        return new Item[]{new Item(CONJURED_ITEM, sellIn, quality)};
     }
 }
