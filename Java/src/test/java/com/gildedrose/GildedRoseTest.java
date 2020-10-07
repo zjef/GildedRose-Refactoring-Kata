@@ -1,12 +1,16 @@
 package com.gildedrose;
 
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class GildedRoseTest {
+
+    public static final String BACKSTAGE_PASSES = "Backstage passes to a TAFKAL80ETC concert";
+    public static final String SULFURAS = "Sulfuras, Hand of Ragnaros";
+    public static final String AGED_BRIE = "Aged Brie";
+    public static final String STANDARD_ITEM = "Standard Item";
 
     @Test
     public void updateQualityReducesSellInByOne() {
@@ -138,19 +142,19 @@ class GildedRoseTest {
     }
 
     private Item[] createBackstagePassSingleton(Integer sellIn, Integer quality) {
-        return new Item[]{new Item("Backstage passes to a TAFKAL80ETC concert", sellIn, quality)};
+        return new Item[]{new Item(BACKSTAGE_PASSES, sellIn, quality)};
     }
 
     private Item[] createSulfurasSingleton(Integer sellIn, Integer quality) {
-        return new Item[]{new Item("Sulfuras, Hand of Ragnaros", sellIn, quality)};
+        return new Item[]{new Item(SULFURAS, sellIn, quality)};
     }
 
     private Item[] createAgedBrieSingleton(Integer sellIn, Integer quality) {
-        return new Item[]{new Item("Aged Brie", sellIn, quality)};
+        return new Item[]{new Item(AGED_BRIE, sellIn, quality)};
     }
 
 
     private Item[] createStandardItemSingleton(Integer sellIn, Integer quality) {
-        return new Item[]{new Item("Standard Item", sellIn, quality)};
+        return new Item[]{new Item(STANDARD_ITEM, sellIn, quality)};
     }
 }
