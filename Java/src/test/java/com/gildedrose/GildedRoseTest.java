@@ -33,7 +33,7 @@ class GildedRoseTest {
     }
 
     @Test
-    public void qualityIsReducedByTwoIfSellInIsNegative(){
+    public void qualityIsReducedByTwoIfSellInIsNegative() {
         Item[] items = createStandardItemSingleton(-5, 10);
         GildedRose app = new GildedRose(items);
 
@@ -43,7 +43,7 @@ class GildedRoseTest {
     }
 
     @Test
-    public void qualityIsReducedByTwoIfSellInIsZero(){
+    public void qualityIsReducedByTwoIfSellInIsZero() {
         Item[] items = createStandardItemSingleton(0, 10);
         GildedRose app = new GildedRose(items);
 
@@ -54,11 +54,16 @@ class GildedRoseTest {
 
     @Test
     public void qualityCanNotBeNegative() {
-        Item[] items = createStandardItemSingleton(10, 0);
+        Item[] items = createStandardItemSingleton(10, 2);
         GildedRose app = new GildedRose(items);
 
         app.updateQuality();
+        assertEquals(1, app.items[0].quality);
 
+        app.updateQuality();
+        assertEquals(0, app.items[0].quality);
+
+        app.updateQuality();
         assertEquals(0, app.items[0].quality);
     }
 
@@ -70,6 +75,23 @@ class GildedRoseTest {
         app.updateQuality();
 
         assertEquals(11, app.items[0].quality);
+        assertEquals(9, app.items[0].sellIn);
+    }
+
+    @Test
+    public void agedBrieIncreasesInQualityByTwoWhenSellInIsLowerThanOrEqualToZero() {
+        Item[] items = createAgedBrieSingleton(1, 10);
+        GildedRose app = new GildedRose(items);
+
+        app.updateQuality();
+
+        assertEquals(11, app.items[0].quality);
+        assertEquals(0, app.items[0].sellIn);
+
+        app.updateQuality();
+
+        assertEquals(13, app.items[0].quality);
+        assertEquals(-1, app.items[0].sellIn);
     }
 
     @Test
@@ -97,6 +119,20 @@ class GildedRoseTest {
         app.updateQuality();
 
         assertEquals(80, app.items[0].quality);
+    }
+
+    @Test
+    public void BackstagePassesQualityIncreasedByOneIfSellInIsAbove10() {
+        Item[] items = createBackstagePassSingleton(15, 10);
+        GildedRose app = new GildedRose(items);
+
+        app.updateQuality();
+
+        assertEquals(11, app.items[0].quality);
+
+        app.updateQuality();
+
+        assertEquals(12, app.items[0].quality);
     }
 
     @Test
@@ -152,7 +188,6 @@ class GildedRoseTest {
     private Item[] createAgedBrieSingleton(Integer sellIn, Integer quality) {
         return new Item[]{new Item(AGED_BRIE, sellIn, quality)};
     }
-
 
     private Item[] createStandardItemSingleton(Integer sellIn, Integer quality) {
         return new Item[]{new Item(STANDARD_ITEM, sellIn, quality)};
