@@ -40,4 +40,10 @@ Feature: Kotlin
       | Sulfuras, Hand of Ragnaros                | 10           | 80            | 10          | 80           |
       | Sulfuras, Hand of Ragnaros                | -5           | 80            | -5          | 80           |
 
+      | Conjured item                             | 10           | 10            | 9           | 8            |
+      | Conjured item                             | 10           | 1             | 9           | 0            |
+      | Conjured item                             | 10           | 0             | 9           | 0            |
+      | Conjured item                             | -5           | 10            | -6          | 6            |
+      | Conjured item                             | -5           | 3             | -6          | 0            |
+
 
