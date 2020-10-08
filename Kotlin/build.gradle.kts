@@ -1,7 +1,7 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
-	kotlin("jvm") version "1.4.0"
+	kotlin("jvm") version "1.4.10"
 }
 
 group = "com.gildedrose"
@@ -13,7 +13,10 @@ repositories {
 
 dependencies {
 	implementation(kotlin("stdlib"))
-	testImplementation("org.junit.jupiter:junit-jupiter:5.6.2")
+	testImplementation("io.cucumber:cucumber-java8:6.7.0")
+	testImplementation("io.cucumber:cucumber-junit:6.7.0")
+	testImplementation("org.junit.jupiter:junit-jupiter:5.7.0")
+	testImplementation("org.junit.vintage:junit-vintage-engine:5.7.0")
 }
 
 tasks.test {
@@ -25,5 +28,5 @@ tasks.test {
 
 // config JVM target to 1.8 for kotlin compilation tasks
 tasks.withType<KotlinCompile>().configureEach {
-	kotlinOptions.jvmTarget = "1.8"
+	kotlinOptions.jvmTarget = "14"
 }
