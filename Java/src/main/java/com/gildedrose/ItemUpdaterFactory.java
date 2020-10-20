@@ -1,25 +1,20 @@
 package com.gildedrose;
 
+import java.util.Arrays;
+import java.util.List;
+
 public class ItemUpdaterFactory {
 
-    private static final String AGED_BRIE = "Aged Brie";
-    private static final String BACKSTAGE_PASSES = "Backstage passes to a TAFKAL80ETC concert";
-    private static final String SULFURAS = "Sulfuras, Hand of Ragnaros";
-    public static final String CONJURED = "Conjured";
+    private static final List<ItemUpdater> updaters = Arrays.asList(
+            new AgedBrieUpdater(),
+            new BackstagePassesUpdater(),
+            new LegendaryItemUpdater(),
+            new ConjuredItemUpdater()
+    );
 
     public static ItemUpdater getUpdater(Item item) {
-        if (AGED_BRIE.equals(item.name)) {
-            return new AgedBrieUpdater();
-        }
-        if (BACKSTAGE_PASSES.equals(item.name)) {
-            return new BackstagePassesUpdater();
-        }
-        if (SULFURAS.equals(item.name)) {
-            return new LegendaryItemUpdater();
-        }
-        if(item.name != null && item.name.startsWith(CONJURED)) {
-            return new ConjuredItemUpdater();
-        }
-        return new StandardItemUpdater();
+        return updaters.stream().filter(itemUpdater -> itemUpdater.updates(item))
+                .findFirst()
+                .orElse(new StandardItemUpdater());
     }
 }

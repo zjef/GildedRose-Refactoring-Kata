@@ -6,7 +6,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class BackstagePassesUpdaterTest {
 
-    public static final String BACKSTAGE_PASSES = "Backstage passes to a TAFKAL80ETC concert";
+    private static final String BACKSTAGE_PASSES = "Backstage passes to a TAFKAL80ETC concert";
 
     @Test
     public void BackstagePassesQualityIncreasedByOneIfSellInIsAbove10() {

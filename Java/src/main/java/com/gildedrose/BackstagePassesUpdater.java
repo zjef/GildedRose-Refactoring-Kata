@@ -2,6 +2,8 @@ package com.gildedrose;
 
 public class BackstagePassesUpdater implements ItemUpdater {
 
+    private static final String BACKSTAGE_PASSES = "Backstage passes to a TAFKAL80ETC concert";
+
     @Override
     public void updateItem(Item item) {
         if (isExpired(item)) {
@@ -14,6 +16,11 @@ public class BackstagePassesUpdater implements ItemUpdater {
             increaseQualityBy(item, 1);
         }
         item.sellIn--;
+    }
+
+    @Override
+    public boolean updates(Item item) {
+        return BACKSTAGE_PASSES.equals(item.name);
     }
 
     private boolean expiresInDaysOrLess(Item item, Integer days) {

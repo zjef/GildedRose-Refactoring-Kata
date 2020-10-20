@@ -1,5 +1,7 @@
 package com.gildedrose;
 
+import java.util.Arrays;
+
 class GildedRose {
 
     private static final String SULFURAS = "Sulfuras, Hand of Ragnaros";

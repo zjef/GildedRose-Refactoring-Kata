@@ -21,4 +21,8 @@ public interface ItemUpdater {
             item.quality = 50;
         }
     }
+
+    default boolean updates(Item item) {
+        return false;
+    }
 }
