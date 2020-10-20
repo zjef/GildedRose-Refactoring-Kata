@@ -9,7 +9,7 @@ class CucumberStepDefinitions : En {
         val items = emptyList<Item>().toMutableList()
 
         var updatedItems = emptyArray<Item>()
-        Given("I have {string} with a sellIn of {int} and a quality of {int}") { name: String, sellInBefore: Int, qualityBefore: Int ->
+        val item = Given("I have {string} with a sellIn of {int} and a quality of {int}") { name: String, sellInBefore: Int, qualityBefore: Int ->
             run {
                 items.add(Item(name, sellInBefore, qualityBefore))
             }
